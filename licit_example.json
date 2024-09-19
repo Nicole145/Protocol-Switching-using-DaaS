@@ -1,0 +1,2728 @@
+{
+    "systemID": "Example1",
+    "games": {
+        "InformationSeeking": {
+            "gameID": "InformationSeeking",
+            "players": [
+                {
+                    "playerID": "Seller",
+                    "roles": [],
+                    "min": 1,
+                    "max": 1
+                },
+                {
+                    "playerID": "Buyer",
+                    "roles": [],
+                    "min": 1,
+                    "max": null
+                }
+            ],
+            "stores": [
+                {
+                    "storeID": "CSB",
+                    "owner": [
+                        "Buyer"
+                    ],
+                    "structure": "set",
+                    "visibility": "public",
+                    "content": []
+                },
+                {
+                    "storeID": "CSS",
+                    "owner": [
+                        "Seller"
+                    ],
+                    "structure": "set",
+                    "visibility": "public",
+                    "content": []
+                }
+            ],
+            "turns": {
+                "magnitude": "multiple",
+                "ordering": "liberal"
+            },
+            "roles": [
+                "Buyer",
+                "Seller"
+            ],
+            "participants": {
+                "min": 2,
+                "max": "undefined"
+            },
+            "rules": [
+                {
+                    "ruleID": "StartingRule",
+                    "scope": "initial",
+                    "effects": [
+                        {
+                            "type": "assign",
+                            "user": "Buyer",
+                            "role": "speaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Question",
+                            "addressee": "$Seller",
+                            "content": [
+                                "p"
+                            ],
+                            "user": "Buyer"
+                        }
+                    ],
+                    "conditional": null
+                }
+            ],
+            "interactions": {
+                "Question": {
+                    "id": "Question",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "$p",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "$p",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Pure Questioning",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 3,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Pure Questioning"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Response",
+                            "addressee": null,
+                            "content": null,
+                            "user": null
+                        }
+                    ],
+                    "conditional": null
+                },
+                "Response": {
+                    "id": "Response",
+                    "addressee": null,
+                    "content": [
+                        "p",
+                        "q"
+                    ],
+                    "opener": "$q",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "q",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "$q",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 5,
+                                "text": "Default Illocuting",
+                                "type": "YA"
+                            },
+                            {
+                                "nodeID": 6,
+                                "text": "Default Rephrase",
+                                "type": "MA"
+                            },
+                            {
+                                "nodeID": 7,
+                                "text": "Asserting",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 5
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 3,
+                                "toID": 6
+                            },
+                            {
+                                "edgeID": 5,
+                                "fromID": 6,
+                                "toID": 2
+                            },
+                            {
+                                "edgeID": 6,
+                                "fromID": 5,
+                                "toID": 6
+                            },
+                            {
+                                "edgeID": 7,
+                                "fromID": 4,
+                                "toID": 7
+                            },
+                            {
+                                "edgeID": 8,
+                                "fromID": 7,
+                                "toID": 3
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 5,
+                                "schemeID": "Default Illocuting"
+                            },
+                            {
+                                "nodeID": 6,
+                                "schemeID": "Default Rephrase"
+                            },
+                            {
+                                "nodeID": 7,
+                                "schemeID": "Asserting"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 4,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Question",
+                            "addressee": null,
+                            "content": null,
+                            "user": null
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchToPersuasion",
+                            "addressee": null,
+                            "content": null,
+                            "user": null
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchToNegotiation",
+                            "addressee": null,
+                            "content": null,
+                            "user": null
+                        }
+                    ],
+                    "conditional": null
+                },
+                "SwitchToPersuasion": {
+                    "id": "SwitchToPersuasion",
+                    "addressee": null,
+                    "content": [],
+                    "opener": "Let me tell you more about it",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "Let me tell you more about it",
+                                "type": "L"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 2,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchAgreed",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchRejected",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "SwitchToNegotiation": {
+                    "id": "SwitchToNegotiation",
+                    "addressee": null,
+                    "content": [],
+                    "opener": "I'd like to make an offer.",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "I'd like to make an offer.",
+                                "type": "L"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 2,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchAgreed",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchRejected",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "SwitchAgreed": {
+                    "id": "SwitchAgreed",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "OK",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "OK",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Agreeing",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Agreeing"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Question",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Speaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Response",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Speaker"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "SwitchRejected": {
+                    "id": "SwitchRejected",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "No",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "No",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Disagreeing",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Disagreeing"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Question",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                }
+            }
+        },
+        "Persuasion": {
+            "gameID": "Persuasion",
+            "players": [
+                {
+                    "playerID": "Seller",
+                    "roles": [],
+                    "min": 1,
+                    "max": 1
+                },
+                {
+                    "playerID": "Buyer",
+                    "roles": [],
+                    "min": 1,
+                    "max": null
+                }
+            ],
+            "stores": [
+                {
+                    "storeID": "CSS",
+                    "owner": [
+                        "Seller"
+                    ],
+                    "structure": "set",
+                    "visibility": "public",
+                    "content": []
+                },
+                {
+                    "storeID": "CSB",
+                    "owner": [
+                        "Buyer"
+                    ],
+                    "structure": "set",
+                    "visibility": "public",
+                    "content": []
+                }
+            ],
+            "turns": {
+                "magnitude": "multiple",
+                "ordering": "liberal"
+            },
+            "roles": [
+                "Proponent",
+                "Opponent"
+            ],
+            "participants": {
+                "min": 2,
+                "max": "undefined"
+            },
+            "rules": [
+                {
+                    "ruleID": "StartingRule",
+                    "scope": "initial",
+                    "effects": [
+                        {
+                            "type": "assign",
+                            "user": "Proponent",
+                            "role": "speaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Request",
+                            "addressee": "$Opponent",
+                            "content": [
+                                "p"
+                            ],
+                            "user": "Proponent"
+                        }
+                    ],
+                    "conditional": null
+                }
+            ],
+            "interactions": {
+                "Request": {
+                    "id": "Request",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "$p?",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "$p?",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Pure Questioning",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 3,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Pure Questioning"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "storeop",
+                            "storeaction": "add",
+                            "storecontent": [
+                                "p"
+                            ],
+                            "storeID": "CSSpeaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Accept",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Reject",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Challenge",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "Accept": {
+                    "id": "Accept",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "Yes",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "Yes",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Agreeing",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Agreeing"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "storeop",
+                            "storeaction": "add",
+                            "storecontent": [
+                                "p"
+                            ],
+                            "storeID": "CSSpeaker"
+                        },
+                        {
+                            "type": "storeop",
+                            "storeaction": "remove",
+                            "storecontent": [
+                                "q"
+                            ],
+                            "storeID": "CSSpeaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchToNegotiation",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchToNegotiation",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Speaker"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "Reject": {
+                    "id": "Reject",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "No",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "No",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Disagreeing",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Disagreeing"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "storeop",
+                            "storeaction": "remove",
+                            "storecontent": [
+                                "p"
+                            ],
+                            "storeID": "CSSpeaker"
+                        },
+                        {
+                            "type": "storeop",
+                            "storeaction": "add",
+                            "storecontent": [
+                                "q"
+                            ],
+                            "storeID": "CSSpeaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Withdraw",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Challenge",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "Challenge": {
+                    "id": "Challenge",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "Why?",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "Why?",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Challenging",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Challenging"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Defence",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Reject",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Withdraw",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "Defence": {
+                    "id": "Defence",
+                    "addressee": null,
+                    "content": [
+                        "p",
+                        "q"
+                    ],
+                    "opener": "$p",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "q",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "$p",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 5,
+                                "text": "Arguing",
+                                "type": "YA"
+                            },
+                            {
+                                "nodeID": 6,
+                                "text": "Default Inference",
+                                "type": "RA"
+                            },
+                            {
+                                "nodeID": 7,
+                                "text": "Asserting",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 5
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 3,
+                                "toID": 6
+                            },
+                            {
+                                "edgeID": 5,
+                                "fromID": 6,
+                                "toID": 2
+                            },
+                            {
+                                "edgeID": 6,
+                                "fromID": 5,
+                                "toID": 6
+                            },
+                            {
+                                "edgeID": 7,
+                                "fromID": 4,
+                                "toID": 7
+                            },
+                            {
+                                "edgeID": 8,
+                                "fromID": 7,
+                                "toID": 3
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 5,
+                                "schemeID": "Arguing"
+                            },
+                            {
+                                "nodeID": 6,
+                                "schemeID": "Default Inference"
+                            },
+                            {
+                                "nodeID": 7,
+                                "schemeID": "Asserting"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 4,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "storeop",
+                            "storeaction": "add",
+                            "storecontent": [
+                                "p"
+                            ],
+                            "storeID": "CSSpeaker"
+                        },
+                        {
+                            "type": "storeop",
+                            "storeaction": "add",
+                            "storecontent": [
+                                "q"
+                            ],
+                            "storeID": "CSSpeaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Accept",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Reject",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Challenge",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "SwitchToInformationSeeking": {
+                    "id": "SwitchToInformationSeeking",
+                    "addressee": null,
+                    "content": [],
+                    "opener": "Can I ask you some questions?",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "Can I ask you some questions?",
+                                "type": "L"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 2,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchAgreed",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchRejected",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "SwitchToNegotiation": {
+                    "id": "SwitchToNegotiation",
+                    "addressee": null,
+                    "content": [],
+                    "opener": "I'd like to make an offer.",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "I'd like to make an offer.",
+                                "type": "L"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 2,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchAgreed",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchRejected",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "SwitchAgreed": {
+                    "id": "SwitchAgreed",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "OK",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "OK",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Agreeing",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Agreeing"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Request",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Speaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Accept",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Speaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Reject",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Speaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Challenge",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Speaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Defence",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Speaker"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "SwitchRejected": {
+                    "id": "SwitchRejected",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "No",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "No",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Disagreeing",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Disagreeing"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Request",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Challenge",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "Withdraw": {
+                    "id": "Withdraw",
+                    "addressee": null,
+                    "content": [],
+                    "opener": "I'm withdrawing",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "I'm withdrawing",
+                                "type": "L"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 2,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Request",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Speaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Accept",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Speaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Reject",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Speaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Challenge",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Speaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Defence",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Speaker"
+                        }
+                    ],
+                    "conditional": null
+                }
+            }
+        },
+        "Negotiation": {
+            "gameID": "Negotiation",
+            "players": [
+                {
+                    "playerID": "Seller",
+                    "roles": [],
+                    "min": 1,
+                    "max": 1
+                },
+                {
+                    "playerID": "Buyer",
+                    "roles": [],
+                    "min": 1,
+                    "max": null
+                }
+            ],
+            "stores": [
+                {
+                    "storeID": "CSB",
+                    "owner": [
+                        "Buyer"
+                    ],
+                    "structure": "set",
+                    "visibility": "public",
+                    "content": []
+                },
+                {
+                    "storeID": "CSS",
+                    "owner": [
+                        "Seller"
+                    ],
+                    "structure": "set",
+                    "visibility": "public",
+                    "content": []
+                }
+            ],
+            "turns": {
+                "magnitude": "multiple",
+                "ordering": "liberal"
+            },
+            "roles": [
+                "Negotiator"
+            ],
+            "participants": {
+                "min": 2,
+                "max": "undefined"
+            },
+            "rules": [
+                {
+                    "ruleID": "StartingRule",
+                    "scope": "initial",
+                    "effects": [
+                        {
+                            "type": "assign",
+                            "user": "Negotiator",
+                            "role": "speaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Offer",
+                            "addressee": "$Negotiator",
+                            "content": [
+                                "p"
+                            ],
+                            "user": null
+                        }
+                    ],
+                    "conditional": null
+                }
+            ],
+            "interactions": {
+                "Offer": {
+                    "id": "Offer",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "$p?",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "$p?",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Assertive Questioning",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 3,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Assertive Questioning"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "storeop",
+                            "storeaction": "add",
+                            "storecontent": [
+                                "p"
+                            ],
+                            "storeID": "CSSpeaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Accept",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Reject",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Offer",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "CounterOffer",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "CounterOffer": {
+                    "id": "CounterOffer",
+                    "addressee": null,
+                    "content": [
+                        "p",
+                        "q"
+                    ],
+                    "opener": "$p?",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "q",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "$p?",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 5,
+                                "text": "Restating",
+                                "type": "YA"
+                            },
+                            {
+                                "nodeID": 6,
+                                "text": "Default Rephrase",
+                                "type": "MA"
+                            },
+                            {
+                                "nodeID": 7,
+                                "text": "Assertive Questioning",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 5
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 3,
+                                "toID": 6
+                            },
+                            {
+                                "edgeID": 5,
+                                "fromID": 6,
+                                "toID": 2
+                            },
+                            {
+                                "edgeID": 6,
+                                "fromID": 5,
+                                "toID": 6
+                            },
+                            {
+                                "edgeID": 7,
+                                "fromID": 4,
+                                "toID": 7
+                            },
+                            {
+                                "edgeID": 8,
+                                "fromID": 7,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 5,
+                                "schemeID": "Restating"
+                            },
+                            {
+                                "nodeID": 6,
+                                "schemeID": "Default Rephrase"
+                            },
+                            {
+                                "nodeID": 7,
+                                "schemeID": "Assertive Questioning"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 4,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "storeop",
+                            "storeaction": "add",
+                            "storecontent": [
+                                "q"
+                            ],
+                            "storeID": "CSSpeaker"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Accept",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Reject",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Offer",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "CounterOffer",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "Accept": {
+                    "id": "Accept",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "OK $p",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "OK $p",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Agreeing",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Agreeing"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "storeop",
+                            "storeaction": "add",
+                            "storecontent": [
+                                "p"
+                            ],
+                            "storeID": "CSSpeaker"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "Reject": {
+                    "id": "Reject",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "Not $p",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "Not $p",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Disagreeing",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Disagreeing"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Offer",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "Withdraw": {
+                    "id": "Withdraw",
+                    "addressee": null,
+                    "content": [],
+                    "opener": "I'm withdrawing",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "I'm withdrawing",
+                                "type": "L"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 2,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Offer",
+                            "addressee": null,
+                            "content": null,
+                            "user": null
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "CounterOffer",
+                            "addressee": null,
+                            "content": null,
+                            "user": null
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Accept",
+                            "addressee": null,
+                            "content": null,
+                            "user": null
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Reject",
+                            "addressee": null,
+                            "content": null,
+                            "user": null
+                        }
+                    ],
+                    "conditional": null
+                },
+                "SwitchToPersuasion": {
+                    "id": "SwitchToPersuasion",
+                    "addressee": null,
+                    "content": [],
+                    "opener": "Let me tell you more about it?",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "Let me tell you more about it?",
+                                "type": "L"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 2,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchAgreed",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchRejected",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "SwitchToInformationSeeking": {
+                    "id": "SwitchToInformationSeeking",
+                    "addressee": null,
+                    "content": [],
+                    "opener": "Can I ask you some questions?",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "Can I ask you some questions?",
+                                "type": "L"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 2,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchAgreed",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "SwitchRejected",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                },
+                "SwitchAgreed": {
+                    "id": "SwitchAgreed",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "OK",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "OK",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Agreeing",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Agreeing"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Offer",
+                            "addressee": null,
+                            "content": null,
+                            "user": null
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "CounterOffer",
+                            "addressee": null,
+                            "content": null,
+                            "user": null
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Accept",
+                            "addressee": null,
+                            "content": null,
+                            "user": null
+                        },
+                        {
+                            "type": "move",
+                            "action": "delete",
+                            "time": "next",
+                            "moveID": "Reject",
+                            "addressee": null,
+                            "content": null,
+                            "user": null
+                        }
+                    ],
+                    "conditional": null
+                },
+                "SwitchRejected": {
+                    "id": "SwitchRejected",
+                    "addressee": null,
+                    "content": [
+                        "p"
+                    ],
+                    "opener": "No",
+                    "forceT": [],
+                    "forceL": [],
+                    "aif": {
+                        "nodes": [
+                            {
+                                "nodeID": 0,
+                                "text": "Default Transition",
+                                "type": "TA"
+                            },
+                            {
+                                "nodeID": 2,
+                                "text": "p",
+                                "type": "I"
+                            },
+                            {
+                                "nodeID": 3,
+                                "text": "No",
+                                "type": "L"
+                            },
+                            {
+                                "nodeID": 4,
+                                "text": "Disagreeing",
+                                "type": "YA"
+                            }
+                        ],
+                        "edges": [
+                            {
+                                "edgeID": 0,
+                                "fromID": null,
+                                "toID": 0
+                            },
+                            {
+                                "edgeID": 1,
+                                "fromID": 0,
+                                "toID": 3
+                            },
+                            {
+                                "edgeID": 3,
+                                "fromID": 0,
+                                "toID": 4
+                            },
+                            {
+                                "edgeID": 4,
+                                "fromID": 4,
+                                "toID": 2
+                            }
+                        ],
+                        "schemefulfillments": [
+                            {
+                                "nodeID": 0,
+                                "schemeID": "Default Transition"
+                            },
+                            {
+                                "nodeID": 4,
+                                "schemeID": "Disagreeing"
+                            }
+                        ],
+                        "participants": [],
+                        "locutions": [
+                            {
+                                "nodeID": 3,
+                                "personID": null,
+                                "start": null
+                            }
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "Offer",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        },
+                        {
+                            "type": "move",
+                            "action": "add",
+                            "time": "next",
+                            "moveID": "CounterOffer",
+                            "addressee": null,
+                            "content": null,
+                            "user": "Listener"
+                        }
+                    ],
+                    "conditional": null
+                }
+            }
+        }
+    }
+}

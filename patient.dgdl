@@ -1,0 +1,103 @@
+ExamplePatient{
+    Persuasion{
+        /* -- Composition -- */
+        turns(magnitude:multiple, ordering:liberal)
+        roles(Proponent, Opponent)
+        participants(min:2, max:2)
+        player(id:Patient, min:1, max:1)
+        player(id:Doctor, min:1, max:1)
+        store(id:CSP, owner:Patient, structure:set, visibility:public)
+        store(id:CSD, owner:Doctor, structure:set, visibility:public)
+        
+
+        /* -- RULES -- */
+        rule(id:StartingRule, scope:initial){ 
+            assign(Proponent,speaker)
+            move(add, next, Request, $Opponent, {p}, Proponent)
+        }
+
+
+        /* -- INTERACTIONS -- */
+        interaction(id:Request, content:{p}, forceL: [{Pure Questioning, p}], opener:"$p?"){
+            store(add, {p}, CSSpeaker)
+            move(add, next, Accept, Listener)
+            move(add, next, Reject, Listener)
+            move(add, next, Challenge, Listener)
+        }
+        interaction(id:Accept, content:{p}, forceT: [{Agreeing, p}], opener:"Yes"){
+            store(add, {p}, CSSpeaker)
+            store(remove, {¬p}, CSSpeaker)
+            move(add, next, SwitchToNegotiation, Listener)
+            move(add, next, SwitchToNegotiation, Speaker)
+        }
+        interaction(id:Reject, content:{p}, forceT: [{Disagreeing, p}], opener:"No"){
+            store(remove, {p}, CSSpeaker)
+            store(add, {¬p}, CSSpeaker)
+            move(add, next, Withdraw, Listener)
+            move(add, next, Challenge, Listener)
+        }
+        interaction(id:Challenge, content:{p}, forceT: [{Challenging, p}], opener:"Why?"){
+            move(add, next, Defence, Listener)
+            move(add, next, Reject, Listener)
+            move(add, next, Withdraw, Listener)
+        }
+        interaction(id:Defence, content:{p, q}, forceT: [{Arguing, {<q,p>, Default Inference}}], forceL: [{Asserting, q}], opener:"$p"){
+            store(add, {p}, CSSpeaker)
+            store(add, {q}, CSSpeaker)
+            move(add, next, Accept, Listener)
+            move(add, next, Reject, Listener)
+            move(add, next, Challenge, Listener)
+        }
+        interaction(id:Withdraw, opener:"I'm withdrawing"){
+            move(delete, next, Request, Speaker)
+            move(delete, next, Accept, Speaker)
+            move(delete, next, Reject, Speaker)
+            move(delete, next, Challenge, Speaker)
+            move(delete, next, Defence, Speaker)
+        }
+        interaction(id:SwitchToNegotiation, opener:"I'm considering your request"){
+            move(delete, next, Request, Speaker)
+            move(delete, next, Accept, Speaker)
+            move(delete, next, Reject, Speaker)
+            move(delete, next, Challenge, Speaker)
+            move(delete, next, Defence, Speaker)
+        }
+    },
+    Negotiation{
+        /* -- Composition -- */
+        turns(magnitude:multiple, ordering:liberal)
+        roles(Negotiator)
+        participants(min:2, max:2)
+        player(id:Patient, min:1, max:1)
+        player(id:Doctor, min:1, max:1)
+        store(id:CSP, owner:Patient, structure:set, visibility:public)
+        store(id:CSD, owner:Doctor, structure:set, visibility:public)
+        
+
+        /* -- RULES -- */
+        rule(id:StartingRule, scope:initial){ 
+            assign(Proponent,speaker)
+            move(add, next, Offer, $Opponent, {p}, Proponent)
+        }
+
+
+        /* -- INTERACTIONS -- */
+        interaction(id:Offer, content:{p}, forceL: [{Assertive Questioning, p}], opener:"$p?"){
+            store(add, {p}, CSSpeaker)
+            move(add, next, Accept, Listener)
+            move(add, next, Reject, Listener)
+            move(add, next, Offer, Listener)
+        }
+        interaction(id:Accept, content:{p}, forceT: [{Agreeing, p}], opener:"OK $p"){
+            store(add, {p}, CSSpeaker)
+        }
+        interaction(id:Reject, content:{p}, forceT: [{Disagreeing, p}], opener:"Not $p"){
+            move(add, next, Offer, Listener)
+        }
+        interaction(id:Withdraw, opener:"I'm withdrawing"){
+            move(delete, next, Offer, Speaker)
+            move(delete, next, Accept, Speaker)
+            move(delete, next, Reject, Speaker)
+        }
+    }
+}

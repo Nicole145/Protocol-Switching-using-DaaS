@@ -1,0 +1,186 @@
+Example1{
+    InformationSeeking{
+        /* -- Composition -- */
+        turns(magnitude:multiple, ordering:liberal)
+        roles(Buyer, Seller)
+        participants(min:2, max:undefined)
+        player(id:Seller, min:1, max:1)
+        player(id:Buyer, min:1)
+        store(id:CSB, owner:Buyer, structure:set, visibility:public)
+        store(id:CSS, owner:Seller, structure:set, visibility:public)
+        
+
+        /* -- RULES -- */
+        rule(id:StartingRule, scope:initial){ 
+            assign(Buyer, speaker)
+            move(add, next, Question, $Seller, {p}, Buyer)
+        }
+
+
+        /* -- INTERACTIONS -- */
+        interaction(id:Question, content:{p}, forceL: [[Pure Questioning, p]], opener:"$p"){ 
+            move(add, next, Response)
+        }
+        interaction(id:Response, content:{p,q}, forceT: [[Default Illocuting, [<q,p>, Default Rephrase]]], forceL: [[Asserting, q]], opener:"$q"){ 
+            move(add, next, Question)
+            move(add, next, SwitchToPersuasion)
+            move(add, next, SwitchToNegotiation)
+        }
+        interaction(id:SwitchToPersuasion, opener:"Let me tell you more about it"){
+            move(add, next, SwitchAgreed, Listener)
+            move(add, next, SwitchRejected, Listener)
+        }
+        interaction(id:SwitchToNegotiation, opener:"I'd like to make an offer."){
+            move(add, next, SwitchAgreed, Listener)
+            move(add, next, SwitchRejected, Listener)
+        }
+        interaction(id:SwitchAgreed, content:{p}, forceT: [{Agreeing, p}], opener:"OK"){
+            move(delete, next, Question, Speaker)
+            move(delete, next, Response, Speaker)
+        }
+        interaction(id:SwitchRejected, content:{p}, forceT: [{Disagreeing, p}], opener:"No"){
+            move(add, next, Question, Listener)
+        }
+   },
+    Persuasion{
+        /* -- Composition -- */
+        turns(magnitude:multiple, ordering:liberal)
+        roles(Proponent, Opponent)
+        participants(min:2, max:undefined)
+        player(id:Seller, min:1, max:1)
+        player(id:Buyer, min:1)
+        store(id:CSS, owner:Seller, structure:set, visibility:public)
+        store(id:CSB, owner:Buyer, structure:set, visibility:public)
+
+
+        /* -- RULES -- */
+        rule(id:StartingRule, scope:initial){ 
+            assign(Proponent,speaker)
+            move(add, next, Request, $Opponent, {p}, Proponent)
+        }
+
+
+        /* -- INTERACTIONS -- */
+        interaction(id:Request, content:{p}, forceL: [{Pure Questioning, p}], opener:"$p?"){
+            store(add, {p}, CSSpeaker)
+            move(add, next, Accept, Listener)
+            move(add, next, Reject, Listener)
+            move(add, next, Challenge, Listener)
+        }
+        interaction(id:Accept, content:{p}, forceT: [{Agreeing, p}], opener:"Yes"){
+            store(add, {p}, CSSpeaker)
+            store(remove, {¬p}, CSSpeaker)
+            move(add, next, SwitchToNegotiation, Listener)
+            move(add, next, SwitchToNegotiation, Speaker)
+        }
+        interaction(id:Reject, content:{p}, forceT: [{Disagreeing, p}], opener:"No"){
+            store(remove, {p}, CSSpeaker)
+            store(add, {¬p}, CSSpeaker)
+            move(add, next, Withdraw, Listener)
+            move(add, next, Challenge, Listener)
+        }
+        interaction(id:Challenge, content:{p}, forceT: [{Challenging, p}], opener:"Why?"){
+            move(add, next, Defence, Listener)
+            move(add, next, Reject, Listener)
+            move(add, next, Withdraw, Listener)
+        }
+        interaction(id:Defence, content:{p, q}, forceT: [{Arguing, {<q,p>, Default Inference}}], forceL: [{Asserting, q}], opener:"$p"){
+            store(add, {p}, CSSpeaker)
+            store(add, {p'}, CSSpeaker)
+            store(add, {p'->p}, CSSpeaker)
+            move(add, next, Accept, Listener)
+            move(add, next, Reject, Listener)
+            move(add, next, Challenge, Listener)
+        }
+        interaction(id:SwitchToInformationSeeking, opener:"Can I ask you some questions?"){
+            move(add, next, SwitchAgreed, Listener)
+            move(add, next, SwitchRejected, Listener)
+        }
+        interaction(id:SwitchToNegotiation, opener:"I'd like to make an offer."){
+            move(add, next, SwitchAgreed, Listener)
+            move(add, next, SwitchRejected, Listener)
+        }
+        interaction(id:SwitchAgreed, content:{p}, forceT: [{Agreeing, p}], opener:"OK"){
+            move(delete, next, Request, Speaker)
+            move(delete, next, Accept, Speaker)
+            move(delete, next, Reject, Speaker)
+            move(delete, next, Challenge, Speaker)
+            move(delete, next, Defence, Speaker)
+        }
+        interaction(id:SwitchRejected, content:{p}, forceT: [{Disagreeing, p}], opener:"No"){
+            move(add, next, Request, Listener)
+            move(add, next, Challenge, Listener)
+        }
+        interaction(id:Withdraw, opener:"I'm withdrawing"){
+            move(delete, next, Request, Speaker)
+            move(delete, next, Accept, Speaker)
+            move(delete, next, Reject, Speaker)
+            move(delete, next, Challenge, Speaker)
+            move(delete, next, Defence, Speaker)
+        }
+    },
+    Negotiation{
+        /* -- Composition -- */
+        turns(magnitude:multiple, ordering:liberal)
+        roles(Negotiator)
+        participants(min:2, max:undefined)
+        player(id:Seller, min:1, max:1)
+        player(id:Buyer, min:1)
+        store(id:CSB, owner:Buyer, structure:set, visibility:public)
+        store(id:CSS, owner:Seller, structure:set, visibility:public)
+
+
+        /* -- RULES -- */
+        rule(id:StartingRule, scope:initial){ 
+            assign(Negotiator, speaker)
+            move(add, next, Offer, $Negotiator, {p})
+        }
+
+
+        /* -- INTERACTIONS -- */
+        interaction(id:Offer, content:{p}, forceL: [{Assertive Questioning, p}], opener:"$p?"){
+            store(add, {p}, CSSpeaker)
+            move(add, next, Accept, Listener)
+            move(add, next, Reject, Listener)
+            move(add, next, Offer, Listener)
+            move(add, next, CounterOffer, Listener)
+        }
+        interaction(id:CounterOffer, content:{p, q}, forceT: [{Restating, {<q,p>, Default Rephrase}}], forceL: [{Assertive Questioning, p}], opener:"$p?"){
+            store(add, {q}, CSSpeaker)
+            move(add, next, Accept, Listener)
+            move(add, next, Reject, Listener)
+            move(add, next, Offer, Listener)
+            move(add, next, CounterOffer, Listener)
+        }
+        interaction(id:Accept, content:{p}, forceT: [{Agreeing, p}], opener:"OK $p"){
+            store(add, {p}, CSSpeaker)
+        }
+        interaction(id:Reject, content:{p}, forceT: [{Disagreeing, p}], opener:"Not $p"){
+            move(add, next, Offer, Listener)
+        }
+        interaction(id:Withdraw, opener:"I'm withdrawing"){
+            move(delete, next, Offer)
+            move(delete, next, CounterOffer)
+            move(delete, next, Accept)
+            move(delete, next, Reject)
+        }
+        interaction(id:SwitchToPersuasion, opener:"Let me tell you more about it?"){
+            move(add, next, SwitchAgreed, Listener)
+            move(add, next, SwitchRejected, Listener)
+        }
+        interaction(id:SwitchToInformationSeeking, opener:"Can I ask you some questions?"){
+            move(add, next, SwitchAgreed, Listener)
+            move(add, next, SwitchRejected, Listener)
+        }
+        interaction(id:SwitchAgreed, content:{p}, forceT: [{Agreeing, p}], opener:"OK"){
+            move(delete, next, Offer)
+            move(delete, next, CounterOffer)
+            move(delete, next, Accept)
+            move(delete, next, Reject)
+        }
+        interaction(id:SwitchRejected, content:{p}, forceT: [{Disagreeing, p}], opener:"No"){
+            move(add, next, Offer, Listener)
+            move(add, next, CounterOffer, Listener)
+        }
+    }
+}
